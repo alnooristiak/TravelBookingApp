@@ -5,7 +5,7 @@ import StackNavigations from "./src/navigations/StackNavigations";
 export default function App() {
   return (
     <>
-      <StatusBar style="auto" />
+      <StatusBar style="auto" barStyle="light-content" />
       <StackNavigations />
     </>
   );
