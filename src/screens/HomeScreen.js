@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, ScrollView, Pressable } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Pressable, TextInput } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import {useNavigation} from '@react-navigation/native'
 import { Ionicons } from '@expo/vector-icons';
 import { colorS } from '../../theme/Color';
 import Header from '../components/Header';
-import { Ionicons } from '@expo/vector-icons';
+import DatePicker from 'react-native-date-ranges';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -36,14 +37,36 @@ const HomeScreen = () => {
     <View>
       <Header />
 
-      <ScrollView>
-        <View>
-          <Pressable>
-          <Ionicons name="search" size={24} color="black" />
-            <Text>Enter Your Designation</Text>
+      <ScrollView style={styles.mainInputSec}>
+        <View style={styles.inputSection}>
+          {/* search section */}
+          <Pressable style={styles.inputSec}>
+            <Ionicons
+              style={styles.searchIcon}
+              name="search"
+              size={24}
+              color="black"
+            />
+            <TextInput
+              style={styles.searchInputS}
+              placeholder="Enter Your Searches Values"
+            />
           </Pressable>
 
-          <Pressable></Pressable>
+          {/* date picker */}
+          <Pressable style={styles.inputSec}>
+          <MaterialIcons style={styles.searchIcon} name="date-range" size={24} color="black" />
+            <DatePicker
+              style={{ width: 350, height: 45 }}
+              customStyles={{
+                placeholderText: { fontSize: 20 },
+              }}
+              centerAlign
+              allowFontScaling={false}
+              placeholder={"Apr 27, 2018 → Jul 10, 2018"}
+              mode={"range"}
+            />
+          </Pressable>
 
           <Pressable></Pressable>
 
@@ -51,7 +74,7 @@ const HomeScreen = () => {
         </View>
       </ScrollView>
     </View>
-  )
+  );
 }
 
 export default HomeScreen
@@ -61,5 +84,29 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         textAlign: 'center'
+    },
+    inputSection: {
+      width: '90%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'center',
+      marginTop: 20
+    },
+    // input sesction styles 
+    inputSec: {
+      flexDirection: 'row',
+      // justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: 50,
+      borderWidth: 1,
+      borderRadius: 10
+    },
+    searchIcon: {
+      borderRightWidth: 1,
+      padding: 4
+    },
+    searchInputS: {
+      padding: 4
     }
 })
